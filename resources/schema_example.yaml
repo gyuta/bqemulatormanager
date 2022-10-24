@@ -1,0 +1,7 @@
+test:
+  dataset1:
+    table_a:
+      - name: id
+        type: INTEGER
+      - name: name
+        type: STRING
