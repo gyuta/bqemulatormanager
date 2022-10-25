@@ -1,7 +1,9 @@
 import subprocess
 
+
 class Emulator:
-    def __init__(self, project_name:str, port:int, launch_emulator:bool = True):
+
+    def __init__(self, project_name: str, port: int, launch_emulator: bool = True):
         self.project_name = project_name
         if launch_emulator:
             self.running_flg = True
