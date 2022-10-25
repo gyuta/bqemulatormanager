@@ -1,9 +1,12 @@
-from bqemulatormanager.emulator import Emulator
-from bqemulatormanager.schema import SchemaManager
+from typing import List
+
+import pandas as pd
 from google.api_core.client_options import ClientOptions
 from google.auth.credentials import AnonymousCredentials
 from google.cloud import bigquery
-import pandas as pd
+
+from bqemulatormanager.emulator import Emulator
+from bqemulatormanager.schema import SchemaManager
 
 
 class Manager:
@@ -51,7 +54,7 @@ class Manager:
         self.client.create_dataset(dataset)
         self.structure[dataset_name] = {}
 
-    def create_table(self, dataset_name: str, table_name: str, schema: list[bigquery.SchemaField]):
+    def create_table(self, dataset_name: str, table_name: str, schema: List[bigquery.SchemaField]):
         if schema == []:
             schema = self.schema_manager.get_schema(f'{self.project_name}.{dataset_name}.{table_name}')
 

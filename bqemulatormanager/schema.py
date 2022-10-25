@@ -1,6 +1,8 @@
+import os
+from typing import List
+
 import yaml
 from google.cloud import bigquery
-import os
 
 
 class SchemaManager:
@@ -16,7 +18,7 @@ class SchemaManager:
             master_schema = {}
         self.master_schema = master_schema
 
-    def get_schema(self, table_id: str) -> list[bigquery.SchemaField]:
+    def get_schema(self, table_id: str) -> List[bigquery.SchemaField]:
         project, dataset, table = table_id.split('.')
 
         schema = self.master_schema.get(project, {}).get(dataset, {}).get(table, {})
@@ -29,7 +31,7 @@ class SchemaManager:
         else:
             return [bigquery.SchemaField.from_api_repr(s) for s in schema]
 
-    def _get_schema_from_production(self, table_id: str) -> list[bigquery.SchemaField]:
+    def _get_schema_from_production(self, table_id: str) -> List[bigquery.SchemaField]:
         if not self.client:
             raise Exception('set client')
         table = self.client.get_table(table_id)
