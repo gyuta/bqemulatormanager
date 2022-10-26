@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bqemulatormanager"
-version = "0.1.4"
+version = "0.1.5"
 description = ""
 authors = ["gyuta <kuroshiba0408@gmail.com>"]
 readme = "README.md"

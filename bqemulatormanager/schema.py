@@ -39,8 +39,8 @@ class SchemaManager:
 
     def save(self):
         if self.change_flg:
-            with open(self.master_path, 'w', encoding='utf8', allow_unicode=True) as f:
-                yaml.dump(self.master_schema, f)
+            with open(self.master_path, 'w') as f:
+                yaml.dump(self.master_schema, f, encoding='utf8', allow_unicode=True)
 
     def __del__(self):
         self.save()
