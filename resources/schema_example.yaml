@@ -1,3 +1,4 @@
+# This code is generated from BigQuery table metadata by "bqemulatormanager"; DO NOT EDIT.
 test:
   dataset1:
     table_a:

@@ -40,6 +40,9 @@ class SchemaManager:
     def save(self):
         if self.change_flg:
             with open(self.master_path, 'w') as f:
+                head_msg = '# This code is generated from BigQuery table metadata by "bqemulatormanager"; DO NOT EDIT.\n'
+                f.write(head_msg)
+
                 yaml.dump(self.master_schema, f, encoding='utf8', allow_unicode=True)
 
     def __del__(self):
