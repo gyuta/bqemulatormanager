@@ -5,14 +5,27 @@ from google.api_core.client_options import ClientOptions
 from google.auth.credentials import AnonymousCredentials
 from google.cloud import bigquery
 
-from bqemulatormanager.emulator import Emulator
+from bqemulatormanager.emulator import Emulator, PortOccupiedError
 from bqemulatormanager.schema import SchemaManager
 
 
 class Manager:
 
-    def __init__(self, project: str = 'test', port: int = 9050, schema_path: str = 'master_schema.yaml'):
-        self.emulator = Emulator(project, port)
+    def __init__(self, project: str = 'test', port: int = 9050, schema_path: str = 'master_schema.yaml',
+    launch_emulator:bool=True, debug_mode:bool=False, max_pool:int=20):
+
+        original_port = port
+        for i in range(max_pool):
+            port = original_port + i
+            try:
+                self.emulator = Emulator(project, port, launch_emulator=launch_emulator, debug_mode=debug_mode)
+            except PortOccupiedError as e:
+                print(e)
+            else:
+                break
+        else:
+            raise RuntimeError(f'there is no empty port from {original_port} to {port}')
+
         self.client = self._make_client(project, port)
 
         prod_client = bigquery.Client(project)
