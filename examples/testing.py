@@ -27,15 +27,15 @@ class TestBigquery(unittest.TestCase):
 
         use_df = pd.DataFrame([
             {
-                'id': '11',
+                'code': '0111',
                 'service_id': 0
             },
             {
-                'id': '11',
+                'code': '0111',
                 'service_id': 1
             },
             {
-                'id': '22',
+                'code': '0222',
                 'service_id': 0
             },
         ])
@@ -54,55 +54,58 @@ class TestBigquery(unittest.TestCase):
         user_df = pd.DataFrame([
             {
                 'ID': '11',
-                'system_cd': '0111'
+                'code': '0111'
             },
             {
                 'ID': '22',
-                'system_cd': '0222'
+                'code': '0222'
             },
             {
                 'ID': '33',
-                'system_cd': '0333'
+                'code': '0333'
             },
             {
                 'ID': '44',
-                'system_cd': '0444'
+                'code': '0444'
             },
             {
                 'ID': '55',
-                'system_cd': '0555'
+                'code': '0555'
             },
         ])
 
         expected_df = pd.DataFrame([
             {
-                'id': '11',
+                'code': '0111',
                 'service_name': 'service-A'
             },
             {
-                'id': '11',
+                'code': '0111',
                 'service_name': 'service-B'
             },
             {
-                'id': '22',
+                'code': '0222',
                 'service_name': 'service-A'
             },
             {
-                'id': '33',
+                'code': '0333',
                 'service_name': 'service-C'
             },
         ])
 
-        manager = bqemulatormanager.Manager(project='test', schema_path='resources/schema_testing.yaml')
+        manager = bqemulatormanager.Manager(project='test', schema_path='examples/resources/schema_testing.yaml')
         with manager:
             manager.load(use_df, 'dataset1.user_use_list')
             manager.load(service_df, 'dataset1.service')
             manager.load(package_df, 'dataset1.package_use_list')
             manager.load(user_df, 'dataset1.users')
 
-            with open('./query.sql') as f:
+            with open('examples/query.sql') as f:
                 sql = f.read()
 
             result = manager.query(sql)
 
         assert_frame_equal(expected_df, result)
+
+if __name__ == '__main__':
+    unittest.main()

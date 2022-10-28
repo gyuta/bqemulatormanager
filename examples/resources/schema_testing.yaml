@@ -9,12 +9,12 @@ test:
     users:
       - name: ID
         type: STRING
-      - name: system_cd
+      - name: code
         type: STRING
     user_use_list:
       - name: service_id
         type: INTEGER
-      - name: id
+      - name: code
         type: STRING
     package_use_list:
       - name: SERVICE_ID

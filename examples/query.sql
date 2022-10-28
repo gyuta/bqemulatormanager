@@ -1,9 +1,9 @@
 SELECT
-  id,
+  code,
   service_name
 FROM (
   SELECT
-    user_use_list.id,
+    user_use_list.code,
     service.name AS service_name
   FROM
     `dataset1.user_use_list` user_use_list
@@ -13,7 +13,7 @@ FROM (
     user_use_list.service_id = service.id )
 UNION DISTINCT (
   SELECT
-    users.id,
+    users.code,
     service_name
   FROM (
     SELECT
@@ -28,4 +28,4 @@ UNION DISTINCT (
   INNER JOIN
     `dataset1.users` users
   ON
-    users.id = CAST(lst.ID AS STRING) )
+    users.ID = CAST(lst.ID AS STRING) )

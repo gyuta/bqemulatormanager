@@ -37,6 +37,8 @@ with manager:
 print(df)
 ```
 
+unit test example is [here](https://github.com/gyuta/bqemulatormanager/blob/main/examples/testing.py).
+
 ### automatically detect schema
 When called `Manager.load`, `SchemaManager` search correspond table schema from `schema_path` (default is `master_schema.yaml`).
 
