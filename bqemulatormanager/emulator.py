@@ -15,7 +15,7 @@ class Emulator:
             if is_port_in_use(port):
                 raise PortOccupiedError(f'port {port} is occupied.')
             self.running_flg = True
-            self.proc = subprocess.Popen(f"bigquery-emulator --project={project_name} --port={port} --log-level={log_level}", shell=True)
+            self.proc = subprocess.Popen(["bigquery-emulator", "--project", f"{project_name}", "--port", f"{port}" "--log-level", f"{log_level}"], shell=True)
         self.structure = {}
 
     def __del__(self):
