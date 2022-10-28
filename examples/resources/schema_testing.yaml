@@ -1,0 +1,23 @@
+# This code is generated from BigQuery table metadata by "bqemulatormanager"; DO NOT EDIT.
+test:
+  dataset1:
+    service:
+      - name: id
+        type: INTEGER
+      - name: name
+        type: STRING
+    users:
+      - name: ID
+        type: STRING
+      - name: system_cd
+        type: STRING
+    user_use_list:
+      - name: service_id
+        type: INTEGER
+      - name: id
+        type: STRING
+    package_use_list:
+      - name: SERVICE_ID
+        type: INTEGER
+      - name: ID
+        type: INTEGER

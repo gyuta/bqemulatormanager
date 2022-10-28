@@ -1,7 +1,7 @@
 import bqemulatormanager as bqem
 import pandas as pd
 
-manager = bqem.Manager(project='test', schema_path='resources/schema_example.yaml')
+manager = bqem.Manager(project='test', schema_path='resources/schema_basic.yaml')
 
 with manager:
     data = pd.DataFrame([
